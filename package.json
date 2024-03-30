@@ -2,8 +2,9 @@
   "name": "glancer-js",
   "version": "1.0.0-RC1",
   "description": "This is a project to compare images using opencv. This is based on rest-api",
-  "main": "main.js",
+  "main": "src/lib/main.js",
   "scripts": {
+    "start": "node src/lib/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
