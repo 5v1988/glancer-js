@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require('multer');
 const app = express();
 const port = 3008;
-const upload = multer({ dest: 'src/images' });
+const upload = multer({ dest: '/tmp' });
 const { loadOpenCV,
     compareImages,
     removeImages
