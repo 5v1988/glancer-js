@@ -1,12 +1,16 @@
 const Jimp = require('jimp');
 const fs = require("fs");
 
-const loadOpenCV = () => new Promise(resolve => {
-    global.Module = {
-        onRuntimeInitialized: resolve
-    };
-    global.cv = require('./opencv.js');
-});
+const loadOpenCV = () => {
+    return new Promise(resolve => {
+        delete require.cache[require.resolve('./opencv.js')];
+        global.Module = {
+            onRuntimeInitialized: resolve
+        };
+        global.cv = require('./opencv.js');
+    });
+};
+
 
 const removeImages = async (dir) => {
     fs.rmSync(dir, { recursive: true, force: true, });
@@ -14,6 +18,9 @@ const removeImages = async (dir) => {
 
 const compareImages = async function (image1, image2) {
     // Load images
+    console.log('test 1');
+    await loadOpenCV();
+    console.log('test 2');
     const jimpImage1 = await Jimp.read(image1);
     const jimpImage2 = await Jimp.read(image2);
     // Resize images to ensure they have the same dimensions
