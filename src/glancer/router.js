@@ -22,7 +22,7 @@ router.post('/glance', upload.array('images', 2), async (req, res) => {
     const match = mse <= threshold && mse > 0;
     await removeImages('src/images');
     return res.status(200)
-        .send({ threshold: threshold, match: match, mean_squared_err: mse.toFixed(2) });
+        .json({ threshold: threshold, match: match, mean_squared_err: mse.toFixed(2) });
 });
 
 module.exports = router;
