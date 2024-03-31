@@ -1,16 +1,17 @@
 {
   "name": "glancer-js",
-  "version": "1.0.0-RC1",
-  "description": "This is a project to compare images using opencv. This is based on rest-api",
-  "main": "src/lib/main.js",
+  "version": "1.0.0-RC2",
+  "description": "This is a project to compare images using opencv. It is based on rest-api",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/lib/main.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Veera N",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jimp": "^0.22.12",
     "multer": "^1.4.5-lts.1"
