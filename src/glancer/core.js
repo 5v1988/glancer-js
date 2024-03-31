@@ -1,6 +1,5 @@
 const Jimp = require('jimp');
 const fs = require("fs");
-fsExtra.emptyDirSync(fileDir);
 
 const loadOpenCV = async () => new Promise(resolve => {
     global.Module = {
