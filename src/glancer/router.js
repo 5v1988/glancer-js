@@ -15,12 +15,17 @@ router.post('/glance', upload.array('images', 2), async (req, res) => {
     if (!req.files || req.files.length !== 2) {
         return res.status(400).json({ message: 'No files uploaded' });
     }
-    let threshold = parseInt(req.query.threshold) || 2; //default 'threshold' value is 2 if not given
+    let threshold = req.query.threshold || 2  //default 'threshold' value is 2 if not given
+    threshold = (Math.round(threshold * 100) / 100).toFixed(2);
     let mse = await compareImages(req.files[0].path, req.files[1].path);
     const match = mse <= threshold && mse >= 0;
     fsExtra.emptyDirSync('src/images');
     return res.status(200)
-        .json({ threshold: threshold, match: match, mean_squared_err: mse.toFixed(2) });
+        .json({
+            threshold: Number(threshold),
+            match: match,
+            mean_squared_err: Number(mse.toFixed(2))
+        });
 });
 
 module.exports = router;
