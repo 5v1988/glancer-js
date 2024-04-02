@@ -4,9 +4,11 @@
 
 Before going any further, let's give a try to spot, among three images on this folder: `src/test-images`, which two images of them are same and which two are different?
 
-<img width="480" src="src/test-images/img-4.png" alt="Difference">
+<img width="720" src="src/test-images/img-4.png" alt="Difference">
 
-Given two images, this project lets you compare them using [open-cv](https://opencv.org/). Furthermore, it also lets you set the tolerance by which the difference between them will be considered either pass or fail.
+Not so easy, right?
+
+This project — based on rest-api, lets you compare them using [open-cv](https://opencv.org/), given any two images. Furthermore, it also lets you set the tolerance by which the difference between them will be considered either pass or fail.
 
 ### Sample Request
 
