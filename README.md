@@ -2,13 +2,13 @@
 
 ## Highlight
 
-Before going any further, let's give a try to spot, among three images on this folder: `src/test-images`, which two images of them are same and which two are different?
+Before going any further, let's try to spot, among the three images in this folder: `src/test-images`, which two images are the same and which two are different.
 
 <img width="720" src="src/test-images/img-4.png" alt="Difference">
 
 Not so easy, right?
 
-This project — based on rest-api, lets you compare them using [open-cv](https://opencv.org/), given any two images. Furthermore, it also lets you set the tolerance by which the difference between them will be considered either pass or fail.
+This project — based on rest-api, lets you compare them using [open-cv](https://opencv.org/), given any two images. Furthermore, it also lets you set the tolerance by which the difference between them will be considered either pass or fail. This benefits while performing visual testing/regression in both development and qa testing
 
 ### Sample Request
 
@@ -96,4 +96,14 @@ public class GlancingTest {
     }
 }
 
+Of course, we delete all snapshots soon we are done with them, so you are safe too!
+
 ```
+
+### Support
+
+- [GitHub issues](https://github.com/5v1988/glancer-js/issues)
+
+- Contact options listed on [this GitHub profile](https://github.com/5v1988)
+
+- [Discord](https://discord.gg/GWfMu5Cwq6)
