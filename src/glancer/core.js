@@ -1,5 +1,6 @@
 const Jimp = require('jimp');
 const fs = require("fs");
+const compareImages = require('resemblejs/compareImages.js');
 
 const loadOpenCV = () => {
     return new Promise(resolve => {
@@ -11,12 +12,11 @@ const loadOpenCV = () => {
     });
 };
 
-
 const removeImages = async (dir) => {
     fs.rmSync(dir, { recursive: true, force: true, });
 }
 
-const compareImages = async function (image1, image2) {
+const compareImagesUsingCV = async function (image1, image2) {
     // Load images
     console.log('test 1');
     await loadOpenCV();
@@ -68,8 +68,67 @@ const compareImages = async function (image1, image2) {
     return mse;
 };
 
+const compareImagesUsingBitMap = async (image1, image2, options) => {
+    const diff = await compareImages(image1, image2, options);
+    const diffSnapshot = diff.getBuffer(false).toString('base64');
+    return {
+        match: false,
+        rawMisMatch: diff.rawMisMatchPercentage,
+        diffBase64: diffSnapshot
+    };
+}
+
+const resembleJsOptions = {
+    "output": {
+        "errorColor": {
+            "red": 255,
+            "green": 0,
+            "blue": 0
+        },
+        "errorType": "flat",
+        "transparency": 0.3,
+        "largeImageThreshold": 1200,
+        "useCrossOrigin": false,
+        // "ignoreAreasColoredWith": {
+        //     "r": 255,
+        //     "g": 0,
+        //     "b": 0,
+        //     "a": 0
+        // },
+        "boundingBoxes": [
+            {
+                "left": 0,
+                "top": 0,
+                "right": 1300,
+                "bottom": 1000
+            }
+        ],
+        // "ignoredBoxes": [
+        //     {
+        //         "left": 100,
+        //         "top": 100,
+        //         "right": 400,
+        //         "bottom": 300
+        //     }
+        // ]
+    },
+    "returnEarlyThreshold": 0,
+    "scaleToSameSize": false,
+    "ignore": "antialiasing",
+    // "tolerance": {
+    //     "red": 255,
+    //     "green": 255,
+    //     "blue": 255,
+    //     "alpha": 255,
+    //     "minBrightness": 255,
+    //     "maxBrightness": 255
+    // }
+}
+
 module.exports = {
     loadOpenCV,
-    compareImages,
-    removeImages
+    compareImagesUsingCV,
+    compareImagesUsingBitMap,
+    removeImages,
+    resembleJsOptions
 }
